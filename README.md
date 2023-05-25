@@ -33,7 +33,9 @@ Postcon : the Sommet is removed
  `main.py -start` pour une definition manuel de chaque partie
  
  Automatisation :
- le programme deconnait les constructeurs par default, de confort, et recopie ainsi que les destructeur, limitant les elements a saisir
+ le programme reconnait les constructeurs par default, de confort, et recopie ainsi que les destructeur.
+ Il interprete les `return void` 
+ limitant les ainsi les élements a saisir.
  
  
  
