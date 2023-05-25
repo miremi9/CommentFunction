@@ -1,6 +1,7 @@
 import re
 import sys
 
+sys.path.append("src")
 import param
 import function as fc
 
@@ -25,7 +26,7 @@ if __name__ =="__main__":
         print(nb_arg)
         raise "too many arg"
     
-    myparam  =param.Param(SIZE,BORDERSIZE)
+    myparam  =param.Param(SIZE,BORDERSIZE,"throw CException otherwise")
     while True:
         out = function2run(myparam)
         if out:
