@@ -1,4 +1,6 @@
 Ce code permet de generer des blocs commentaires pour les fonctions C++
+Nessecite : python version > 3.8
+python regex librairie -> `pip install regex` 
 utilisation : 
 python main -re 
 ```
