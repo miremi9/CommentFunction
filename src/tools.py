@@ -75,7 +75,7 @@ def traitement_element(function,myparam):
     function.output = "Output : " + function.output
 
 def create_message(function,myparam):
-    message = myparam.first
+    
 
     nb_tabulation = myparam.nb_tabulation
     sizeempty = myparam.sizeempty
@@ -83,21 +83,31 @@ def create_message(function,myparam):
     size = myparam.size
     liste = [function.args,function.precon,function.output,function.postcon]
     start = 0
+    lines_message = [myparam.first]
+    line = ""
     while len(function.methode[start:])>sizeempty:
-        
-        message += "\n" + "\t"*nb_tabulation + border + function.methode[start:start+sizeempty]+border
+        line = border + " "+function.methode[start:start+sizeempty] +" "+ border
+        lines_message.append(line)
         start +=sizeempty
-    message+="\n" + "\t"*nb_tabulation +border +function.methode[start:].ljust(sizeempty) +border
-    message += "\n" +" "+"*"*(size-2)
+
+    line = border +" " + function.methode[start:].ljust(sizeempty) +" "+border
+    lines_message.append(line)
+
+    line = "*"*size
+    lines_message.append(line)
+    
 
     for part in liste:
         start = 0
         while len(part[start:])>sizeempty:
-            
-            message += "\n" + "\t"*nb_tabulation + border + part[start:start+sizeempty]+border
-
+            line = border + " "+part[start:start+sizeempty] +" "+ border
+            lines_message.append(line)
             start +=sizeempty
-        message+="\n" + "\t"*nb_tabulation +border +part[start:].ljust(sizeempty) +border
-    message +="\n" +myparam.end
+        
+        line = border +" " + part[start:].ljust(sizeempty) +" "+border
+        lines_message.append(line)
+    lines_message.append(myparam.end)
+    begin_line = "\n " + "\t" * myparam.nb_tabulation
+    message  =f"{begin_line}".join(lines_message)
     return message
 

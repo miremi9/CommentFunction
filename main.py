@@ -6,7 +6,7 @@ import param
 import function as fc
 
 SIZE = 74
-BORDERSIZE = 6
+BORDERSIZE = 5
 
 
 
