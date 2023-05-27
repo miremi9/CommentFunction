@@ -1,7 +1,7 @@
 import re
 import data
 
-def definition_traitement(definition):
+def definition_traitement(definition:str):
 
     if m:=re.search('^\s*([^\(\)~ ]+)\(\)', definition):       #constructordefaut
         methode = "Default class Constructor | " + m.group(1)
@@ -74,7 +74,7 @@ def traitement_element(function,myparam):
     function.postcon = "Postcondition : " + function.postcon
     function.output = "Output : " + function.output
 
-def create_message(function,myparam):
+def create_message(function:data.Function,myparam):
     
 
     nb_tabulation = myparam.nb_tabulation
@@ -99,15 +99,26 @@ def create_message(function,myparam):
 
     for part in liste:
         start = 0
-        while len(part[start:])>sizeempty:
-            line = border + " "+part[start:start+sizeempty] +" "+ border
+        for line in split_text(part,sizeempty):
+            line = border +" " + line[start:].ljust(sizeempty) +" "+border
             lines_message.append(line)
-            start +=sizeempty
-        
-        line = border +" " + part[start:].ljust(sizeempty) +" "+border
-        lines_message.append(line)
     lines_message.append(myparam.end)
     begin_line = "\n " + "\t" * myparam.nb_tabulation
     message  =f"{begin_line}".join(lines_message)
     return message
 
+
+
+
+def split_text(text:str,size:int) -> list:
+    out = [""]
+    index = int(0)
+    for word in text.split(" "):
+        if (len(word) + 1 + len(out[-1])) < size:
+            out[-1] += word +" "
+        else:
+            if len(word)>size:
+                raise ValueError("Mot trop grand")
+            out.append(word)
+
+    return out
